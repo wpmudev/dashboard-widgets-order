@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: Dashboard Widgets Order
-Plugin URI: 
-Description:
+Plugin URI: http://premium.wpmudev.org/project/dashboard-widget-order
+Description: Easily customize the order of widgets on all of your users dashboards... giving more prominence to the widgets *you* want them to see and use
 Author: Andrew Billits
-Version: 2.0.2
+Version: 2.0.3
 Author URI:
 */
 
-/* 
+/*
 Copyright 2007-2009 Incsub (http://incsub.com)
 
 This program is free software; you can redistribute it and/or modify
@@ -29,7 +29,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //---Config---------------------------------------------------------------//
 //------------------------------------------------------------------------//
 //  change the order of the widgets here
-
 $dashboard_widgets_order_left_column[] = 'dashboard_right_now';
 $dashboard_widgets_order_left_column[] = 'dashboard_recent_comments';
 $dashboard_widgets_order_left_column[] = 'dashboard_incoming_links';
@@ -44,7 +43,7 @@ $dashboard_widgets_order_right_column[] = 'dashboard_secondary';
 //  the new order instead of just new users.
 //  Note that this will overwrite the custom widget order users have
 //  configured.
-$dashboard_widgets_order_hash = 'm9c0u2030zxnm0q';
+$dashboard_widgets_order_hash = 'm9c0u203b7u0338u10zxnm0q';
 
 //------------------------------------------------------------------------//
 //---Hook-----------------------------------------------------------------//
@@ -54,43 +53,32 @@ add_action('init', 'dashboard_widgets_order');
 //---Functions------------------------------------------------------------//
 //------------------------------------------------------------------------//
 
-function dashboard_widgets_order(){
+function dashboard_widgets_order() {
 	global $wpdb, $user_ID, $dashboard_widgets_order_left_column, $dashboard_widgets_order_right_column, $dashboard_widgets_order_hash;
 	if ( !empty( $user_ID ) ) {
-		$dashboard_widget_order_updated = get_usermeta($user_ID, $wpdb->base_prefix . $wpdb->blog . '_' . $dashboard_widgets_order_hash . '_dashboard_widget_order_updated');
-		
-		if ( $dashboard_widget_order_updated != 'yes' ) {
+		$dashboard_widget_order_updated = get_user_option('meta-box-order_dashboard_updated', $user_ID);
 
+		if ( $dashboard_widget_order_updated != $dashboard_widgets_order_hash ) {
+
+			$left_column = '';
 			foreach ( $dashboard_widgets_order_left_column as $dashboard_widgets_order_left_column_widget ) {
-				$left_column = $left_column . $dashboard_widgets_order_left_column_widget . ',';
+				$left_column .= $dashboard_widgets_order_left_column_widget . ',';
 			}
 			$left_column = rtrim($left_column, ',');
-			
+
+			$right_column = '';
 			foreach ( $dashboard_widgets_order_right_column as $dashboard_widgets_order_right_column_widget ) {
-				$right_column = $right_column . $dashboard_widgets_order_right_column_widget . ',';
+				$right_column .= $dashboard_widgets_order_right_column_widget . ',';
 			}
 			$right_column = rtrim($right_column, ',');
-			
+
 			$dashboard_widget_order = array();
 
 			$dashboard_widget_order['side'] = $right_column;
 			$dashboard_widget_order['normal'] = $left_column;
 
-			update_usermeta($user_ID, $wpdb->base_prefix . $wpdb->blogid . '_metaboxorder_dashboard', $dashboard_widget_order);
-			update_usermeta($user_ID, $wpdb->base_prefix . $wpdb->blog . '_' . $dashboard_widgets_order_hash . '_dashboard_widget_order_updated', 'yes');
+			update_user_option($user_ID, 'meta-box-order_dashboard', $dashboard_widget_order, true);
+			update_user_option($user_ID, 'meta-box-order_dashboard_updated', $dashboard_widgets_order_hash, true);
 		}
 	}
 }
-//------------------------------------------------------------------------//
-//---Output Functions-----------------------------------------------------//
-//------------------------------------------------------------------------//
-
-//------------------------------------------------------------------------//
-//---Page Output Functions------------------------------------------------//
-//------------------------------------------------------------------------//
-
-//------------------------------------------------------------------------//
-//---Support Functions----------------------------------------------------//
-//------------------------------------------------------------------------//
-
-?>
