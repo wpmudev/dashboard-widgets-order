@@ -61,8 +61,7 @@ function dashboard_widgets_order() {
 	if ( !is_multisite() )
 		exit( 'The Dashboard Widget Order plugin is only compatible with WordPress Multisite.' );
 	
-	// There are no phrases here, passing loading textdomain	
-	// load_plugin_textdomain('dashboard_widgets_order', false, dirname(plugin_basename(__FILE__)).'/languages');
+	load_plugin_textdomain('dashboard_widgets_order', false, dirname(plugin_basename(__FILE__)).'/languages');
 	
 	if ( !empty( $user_ID ) ) {
 		$dashboard_widget_order_updated = get_user_option('meta-box-order_dashboard_updated', $user_ID);
