@@ -8,6 +8,7 @@ Version: 2.0.4
 Author URI: http://premium.wpmudev.org
 WDP ID: 16
 Network: true
+Text Domain: dashboard_widgets_order
 */
 
 /*
