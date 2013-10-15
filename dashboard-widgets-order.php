@@ -46,7 +46,7 @@ $dashboard_widgets_order_right_column[] = 'dashboard_secondary';
 //  the new order instead of just new users.
 //  Note that this will overwrite the custom widget order users have
 //  configured.
-$dashboard_widgets_order_hash = 'm9c0u203b7u0338u10zxnm0q';
+$dashboard_widgets_order_hash = 'n9c0u203b7u0338u10zxnm1n';
 
 //------------------------------------------------------------------------//
 //---Hook-----------------------------------------------------------------//
@@ -57,7 +57,7 @@ add_action('init', 'dashboard_widgets_order');
 //------------------------------------------------------------------------//
 
 function dashboard_widgets_order() {
-	global $wpdb, $user_ID, $dashboard_widgets_order_left_column, $dashboard_widgets_order_right_column, $dashboard_widgets_order_hash;
+	global $wpdb, $user_ID, $dashboard_widgets_order_left_column, $dashboard_widgets_order_right_column, $dashboard_widgets_order_hash, $wp_meta_boxes;
 	
 	if ( !is_multisite() )
 		exit( 'The Dashboard Widget Order plugin is only compatible with WordPress Multisite.' );
