@@ -4,7 +4,7 @@ Plugin Name: Dashboard Widgets Order
 Plugin URI: http://premium.wpmudev.org/project/dashboard-widget-order
 Description: Easily customize the order of widgets on all of your users dashboards... giving more prominence to the widgets *you* want them to see and use
 Author: S H Mohanjith (Incsub), Andrew Billits (Incsub)
-Version: 2.0.4
+Version: 2.0.5
 Author URI: http://premium.wpmudev.org
 WDP ID: 16
 Network: true
@@ -58,12 +58,12 @@ add_action('init', 'dashboard_widgets_order');
 
 function dashboard_widgets_order() {
 	global $wpdb, $user_ID, $dashboard_widgets_order_left_column, $dashboard_widgets_order_right_column, $dashboard_widgets_order_hash, $wp_meta_boxes;
-	
+
 	if ( !is_multisite() )
 		exit( 'The Dashboard Widget Order plugin is only compatible with WordPress Multisite.' );
-	
+
 	load_plugin_textdomain('dashboard_widgets_order', false, dirname(plugin_basename(__FILE__)).'/languages');
-	
+
 	if ( !empty( $user_ID ) ) {
 		$dashboard_widget_order_updated = get_user_option('meta-box-order_dashboard_updated', $user_ID);
 
@@ -89,15 +89,5 @@ function dashboard_widgets_order() {
 			update_user_option($user_ID, 'meta-box-order_dashboard', $dashboard_widget_order, true);
 			update_user_option($user_ID, 'meta-box-order_dashboard_updated', $dashboard_widgets_order_hash, true);
 		}
-	}
-}
-
-if ( !function_exists( 'wdp_un_check' ) ) {
-	add_action( 'admin_notices', 'wdp_un_check', 5 );
-	add_action( 'network_admin_notices', 'wdp_un_check', 5 );
-
-	function wdp_un_check() {
-		if ( !class_exists( 'WPMUDEV_Update_Notifications' ) && current_user_can( 'edit_users' ) )
-			echo '<div class="error fade"><p>' . __('Please install the latest version of <a href="http://premium.wpmudev.org/project/update-notifications/" title="Download Now &raquo;">our free Update Notifications plugin</a> which helps you stay up-to-date with the most stable, secure versions of WPMU DEV themes and plugins. <a href="http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-information/">More information &raquo;</a>', 'wpmudev') . '</a></p></div>';
 	}
 }
