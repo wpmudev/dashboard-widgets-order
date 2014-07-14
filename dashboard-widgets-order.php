@@ -3,7 +3,7 @@
 Plugin Name: Dashboard Widgets Order
 Plugin URI: http://premium.wpmudev.org/project/dashboard-widget-order
 Description: Easily customize the order of widgets on all of your users dashboards... giving more prominence to the widgets *you* want them to see and use
-Author: S H Mohanjith (Incsub), Andrew Billits (Incsub)
+Author: WPMU DEV
 Version: 2.0.4.2
 Author URI: http://premium.wpmudev.org
 WDP ID: 16
@@ -13,6 +13,8 @@ Text Domain: dashboard_widgets_order
 
 /*
 Copyright 2007-2009 Incsub (http://incsub.com)
+Author - S H Mohanjith (Incsub)
+Contributors - Andrew Billits (Incsub)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
