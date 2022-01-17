@@ -27,7 +27,7 @@ No confusing configuration panels to mess with. Adjust widgets to start the way 
 
 ### To Get Started:
 
-Start by reading [Installing Plugins](https://premium.wpmudev.org/wpmu-manual/installing-regular-plugins-on-wpmu/) section in our comprehensive [WordPress and WordPress Multisite Manual](https://premium.wpmudev.org/wpmu-manual/) if you are new to WordPress.
+Start by reading [Installing Plugins](https://wpmudev.com/docs/using-wordpress/installing-wordpress-plugins/) section in our comprehensive [WordPress and WordPress Multisite Manual](https://premium.wpmudev.org/wpmu-manual/) if you are new to WordPress.
 
 ### To Use:
 
